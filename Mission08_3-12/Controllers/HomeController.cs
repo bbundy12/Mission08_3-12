@@ -6,12 +6,12 @@ namespace Mission08_3_12.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        //private MoviesContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
+        //public HomeController(MoviesContext temp) //Constructor 
+        //{
+        //    _context = temp;
+        //}
 
         public IActionResult Index()
         {
@@ -28,5 +28,66 @@ namespace Mission08_3_12.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        //public IActionResult MovieList()
+        //{
+        //    var movies = _context.Movies.ToList();
+
+        //    return View(movies);
+        //}
+
+        //[HttpGet]
+        //public IActionResult Contribute()
+        //{
+        //    ViewBag.Categories = _context.Categories.ToList();
+        //    return View("Contribute");
+        //}
+
+        //[HttpPost]
+        //public IActionResult Contribute(Movie response)
+        //{
+        //    _context.Movies.Add(response);
+        //    _context.SaveChanges();
+
+        //    return View("Success", response);
+        //}
+
+        //[HttpGet]
+        //public IActionResult Edit(int id)
+        //{
+        //    var recordToEdit = _context.Movies
+        //        .Single(x => x.MovieId == id);
+
+        //    ViewBag.Categories = _context.Categories.ToList();
+
+        //    return View("Contribute", recordToEdit);
+        //}
+
+        //[HttpPost]
+        //public IActionResult Edit(Movie app)
+        //{
+        //    _context.Update(app);
+        //    _context.SaveChanges();
+
+        //    return RedirectToAction("MovieList");
+        //}
+
+        //[HttpGet]
+        //public IActionResult Delete(int id)
+        //{
+        //    var recordToDelete = _context.Movies
+        //        .Single(x => x.MovieId == id);
+
+        //    return View(recordToDelete);
+        //}
+
+        //[HttpPost]
+        //public IActionResult Delete(Movie app)
+        //{
+        //    _context.Movies.Remove(app);
+        //    _context.SaveChanges();
+
+        //    return RedirectToAction("MovieList");
+        //}
     }
 }
