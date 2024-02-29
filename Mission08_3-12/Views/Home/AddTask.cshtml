@@ -2,4 +2,48 @@
 @model Mission08_3_12.Views.Home.AddTaskModel
 @{
 }
-@*on this page I will create a form where the user can create a new task *@
+@model Task
+
+<h1>Add New Task</h1>
+
+<form method="post" class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <input type="hidden" asp-for="TaskId" />
+            <div class="form-group">
+                <label asp-for="Task">Task Name</label>
+                <input asp-for="Task" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="DueDate">Due Date:</label>
+                <input asp-for="DueDate" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Quadrant">Quadrant</label>
+                <input asp-for="Quadrant" class="form-control" />
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="categoryId">Category</label>
+                <select asp-for="categoryId" class="form-control">
+                    <option value=""> Select a Category</option>
+                    @foreach (Category c in ViewBag.Categories)
+                    {
+                        <option value="@c.CategoryId">@c.CategoryName</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Completed">Completed?</label>
+                <input asp-for="Completed" class="form-control" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <button type="submit" class="btn btn-primary">Submit Task</button>
+        </div>
+    </div>
+</form>
+
