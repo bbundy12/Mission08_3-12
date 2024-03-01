@@ -18,11 +18,6 @@ namespace Mission08_3_12.Controllers
             return View();
         }
 
-        public IActionResult Edit()
-        {
-            return View();
-        }
-
         public IActionResult AddTask()
         {
             return View();
