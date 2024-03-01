@@ -28,6 +28,11 @@ namespace Mission08_3_12.Controllers
             return View();
         }
 
+        public IActionResult Delete()
+        {
+            return View();
+        }
+
         //public IActionResult MovieList()
         //{
         //    var movies = _context.Movies.ToList();
