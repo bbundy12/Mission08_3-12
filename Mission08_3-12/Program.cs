@@ -1,7 +1,20 @@
+using Microsoft.EntityFrameworkCore;
+using Mission08_3_12.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Add services to the container.
+builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<_413firstThingsContext>(options =>
+{
+    options.UseSqlite(builder.Configuration["ConnectionStrings:BaseballConnection"]);
+});
+
+builder.Services.AddScoped<iTaskRepository, EFTaskRepository>(); //Give each request an instance of EFBaseballRepository. Each HTTP request will get its own. 
 
 var app = builder.Build();
 
