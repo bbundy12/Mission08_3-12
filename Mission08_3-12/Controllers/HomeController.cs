@@ -6,12 +6,11 @@ namespace Mission08_3_12.Controllers
 {
     public class HomeController : Controller
     {
-        //private MoviesContext _context;
-
-        //public HomeController(MoviesContext temp) //Constructor 
-        //{
-        //    _context = temp;
-        //}
+        private iTaskRepository _repo;
+        public HomeController(iTaskRepository temp)
+        {
+            _repo = temp;
+        }
 
         public IActionResult Index()
         {
