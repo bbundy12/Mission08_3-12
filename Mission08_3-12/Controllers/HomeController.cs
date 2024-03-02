@@ -17,10 +17,10 @@ namespace Mission08_3_12.Controllers
 
         public IActionResult Index()
         {
-            var movies = _repo.Tasks.Include("Category")
+            var category = _repo.Tasks.Include("Category")
                 .OrderBy(x => x.Category.CategoryName);
 
-            return View(movies);
+            return View(category);
         }
 
         [HttpGet]
