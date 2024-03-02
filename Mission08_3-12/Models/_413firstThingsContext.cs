@@ -17,31 +17,26 @@ public partial class _413firstThingsContext : DbContext
 
     public virtual DbSet<Category> Categories { get; set; }
 
-    public virtual DbSet<TaskFix> Tasks { get; set; }
+    public virtual DbSet<Task> Tasks { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlite("Data Source=413FirstThings.db");
+// #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlite("Data Source=413FirstThings.sqlite");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Category>(entity =>
         {
-            entity.ToTable("categories");
-
-            entity.HasIndex(e => e.CategoryName, "IX_categories_CategoryName").IsUnique();
+            entity.HasIndex(e => e.CategoryName, "IX_Categories_CategoryName").IsUnique();
 
             entity.Property(e => e.CategoryId).ValueGeneratedNever();
         });
 
         modelBuilder.Entity<TaskFix>(entity =>
         {
-            entity.ToTable("tasks");
-
             entity.Property(e => e.TaskId).ValueGeneratedNever();
             entity.Property(e => e.Completed).HasColumnType("BOOLEAN");
             entity.Property(e => e.DueDate).HasColumnType("DATE");
-            entity.Property(e => e.TaskName).HasColumnName("Task");
 
             entity.HasOne(d => d.Category).WithMany(p => p.Tasks).HasForeignKey(d => d.CategoryId);
         });
