@@ -58,7 +58,7 @@ namespace Mission08_3_12.Controllers
         [HttpPost]
         public IActionResult Edit(TaskFix app)
         {
-            _repo.AddSingleTask(app);
+            _repo.UpdateSingleTask(app);
 
             return RedirectToAction("Index");
         }

@@ -7,5 +7,6 @@
 
         public void AddSingleTask(TaskFix task);
         public void RemoveSingleTask(TaskFix task);
+        public void UpdateSingleTask(TaskFix app);
     }
 }

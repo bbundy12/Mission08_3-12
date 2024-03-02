@@ -16,7 +16,7 @@
                 <input asp-for="DueDate" class="form-control" type="date" pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="MM/DD/YYYY" />
             </div>
             <label asp-for="Quadrant">Quadrant</label>
-            <select asp-for="Quadrant" class="form-control">
+            <select asp-for="Quadrant" class="form-control" required>
                 <option value="">Select a Quadrant</option>
                 <option value="1">Quadrant I: Important / Urgent</option>
                 <option value="2">Quadrant II: Important / Not Urgent</option>
