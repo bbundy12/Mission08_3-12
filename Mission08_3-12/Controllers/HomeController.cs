@@ -18,7 +18,7 @@ namespace Mission08_3_12.Controllers
         public IActionResult Index()
         {
             var movies = _repo.Tasks.Include("Category")
-                .OrderBy(x => x.Category.CategoryName).ToList();
+                .OrderBy(x => x.Category.CategoryName);
 
             return View(movies);
         }
@@ -29,9 +29,9 @@ namespace Mission08_3_12.Controllers
             var recordToEdit = _repo.Tasks
                 .Single(x => x.TaskId == id);
 
-            ViewBag.Categories = _repo.Categories.ToList();
+            ViewBag.Categories = _repo.Categories;
 
-            return View("Contribute", recordToEdit);
+            return View(recordToEdit);
         }
 
         [HttpPost]

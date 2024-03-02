@@ -9,7 +9,7 @@ namespace Mission08_3_12.Models
         {
             _context = temp;
         }
-        public IQueryable<TaskFix> Tasks => _context.Tasks;
+        public IQueryable<TaskFix> Tasks => (IQueryable<TaskFix>)_context.Tasks;
 
         public IQueryable<Category> Categories => _context.Categories;
 
@@ -17,8 +17,6 @@ namespace Mission08_3_12.Models
         {
             _context.Tasks.Add(task);
             _context.SaveChanges();
-
-
         }
         public void RemoveSingleTask(TaskFix task)
         {
