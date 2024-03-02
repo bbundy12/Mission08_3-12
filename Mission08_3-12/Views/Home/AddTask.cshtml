@@ -8,14 +8,14 @@
         <div class="col-md-6">
             <input asp-for="TaskId" type="hidden" />
             <div class="form-group">
-                <label asp-for="TaskName">Task Name</label>
+                <label asp-for="TaskName" required>Task Name</label>
                 <input asp-for="TaskName" class="form-control" />
             </div>
             <div class="form-group">
                 <label asp-for="DueDate">Due Date:</label>
                 <input asp-for="DueDate" class="form-control" type="date" pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="MM/DD/YYYY" />
             </div>
-            <label asp-for="Quadrant">Quadrant</label>
+            <label asp-for="Quadrant" required>Quadrant</label>
             <select asp-for="Quadrant" class="form-control">
                 <option value="">Select a Quadrant</option>
                 <option value="1">Quadrant I: Important / Urgent</option>
