@@ -13,12 +13,16 @@
             </div>
             <div class="form-group">
                 <label asp-for="DueDate">Due Date:</label>
-                <input asp-for="DueDate" class="form-control" />
+                <input asp-for="DueDate" class="form-control" type="date" pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="MM/DD/YYYY" />
             </div>
-            <div class="form-group">
-                <label asp-for="Quadrant">Quadrant</label>
-                <input asp-for="Quadrant" class="form-control" />
-            </div>
+            <label asp-for="Quadrant">Quadrant</label>
+            <select asp-for="Quadrant" class="form-control">
+                <option value="">Select a Quadrant</option>
+                <option value="1">Quadrant I: Important / Urgent</option>
+                <option value="2">Quadrant II: Important / Not Urgent</option>
+                <option value="3">Quadrant III: Not Important / Urgent</option>
+                <option value="4">Quadrant IV: Not Important / Not Urgent</option>
+            </select>
         </div>
         <div class="col-md-6">
             <div class="form-group">

@@ -37,7 +37,10 @@ namespace Mission08_3_12.Controllers
         {
             _repo.AddSingleTask(response);
 
-            return View(response);
+            var category = _repo.Tasks.Include("Category")
+                .OrderBy(x => x.Category.CategoryName);
+
+            return View("Index", category);
         }
 
         [HttpGet]
