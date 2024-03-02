@@ -34,7 +34,7 @@ public partial class _413firstThingsContext : DbContext
 
         modelBuilder.Entity<TaskFix>(entity =>
         {
-            entity.Property(e => e.TaskId).ValueGeneratedNever();
+            entity.Property(e => e.TaskId).ValueGeneratedOnAdd();
             entity.Property(e => e.Completed).HasColumnType("BOOLEAN");
             entity.Property(e => e.DueDate).HasColumnType("DATE");
 

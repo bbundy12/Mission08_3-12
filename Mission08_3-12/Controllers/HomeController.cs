@@ -17,27 +17,48 @@ namespace Mission08_3_12.Controllers
 
         public IActionResult Index()
         {
-            var movies = _repo.Tasks.Include("Category")
+            var category = _repo.Tasks.Include("Category")
                 .OrderBy(x => x.Category.CategoryName);
 
-            return View(movies);
+            return View(category);
         }
 
         [HttpGet]
-        public IActionResult AddTask(int id)
+        public IActionResult AddTask()
+        {
+            ViewBag.Categories = _repo.Categories
+                .OrderBy(x => x.CategoryName);
+
+            return View(new TaskFix());
+        }
+
+        [HttpPost]
+        public IActionResult AddTask(TaskFix response)
+        {
+            _repo.AddSingleTask(response);
+
+            var category = _repo.Tasks.Include("Category")
+                .OrderBy(x => x.Category.CategoryName);
+
+            return View("Index", category);
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
         {
             var recordToEdit = _repo.Tasks
                 .Single(x => x.TaskId == id);
 
-            ViewBag.Categories = _repo.Categories;
+            ViewBag.Categories = _repo.Categories 
+                .OrderBy(x => x.CategoryName);
 
-            return View(recordToEdit);
+            return View("AddTask", recordToEdit);
         }
 
         [HttpPost]
-        public IActionResult AddTask(TaskFix app)
+        public IActionResult Edit(TaskFix app)
         {
-            _repo.AddSingleTask(app);
+            _repo.UpdateSingleTask(app);
 
             return RedirectToAction("Index");
         }
