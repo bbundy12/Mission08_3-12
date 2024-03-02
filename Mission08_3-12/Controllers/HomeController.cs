@@ -31,7 +31,7 @@ namespace Mission08_3_12.Controllers
 
             ViewBag.Categories = _repo.Categories;
 
-            return View("Contribute", recordToEdit);
+            return View(recordToEdit);
         }
 
         [HttpPost]
