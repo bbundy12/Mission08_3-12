@@ -18,11 +18,6 @@ namespace Mission08_3_12.Models
             _context.Tasks.Add(task);
             _context.SaveChanges();
         }
-        public void UpdateSingleTask(TaskFix task)
-        {
-            _context.Tasks.Update(task);
-            _context.SaveChanges();
-        }
         public void RemoveSingleTask(TaskFix task)
         {
             _context.Tasks.Remove(task);
