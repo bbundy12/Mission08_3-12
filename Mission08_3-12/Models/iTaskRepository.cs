@@ -1,10 +1,11 @@
 ﻿namespace Mission08_3_12.Models
 {
-    public interface iTaskRepository
+    public interface ITaskRepository
     {
-        List<Task> Tasks { get; }
+        IQueryable<TaskFix> Tasks { get; }
+        IQueryable<Category> Categories { get; }
 
-        public void AddTask(Task task);
-
+        public void AddSingleTask(TaskFix task);
+        public void RemoveSingleTask(TaskFix task);
     }
 }

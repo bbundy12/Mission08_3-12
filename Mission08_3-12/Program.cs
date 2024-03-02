@@ -11,10 +11,10 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<_413firstThingsContext>(options =>
 {
-    options.UseSqlite(builder.Configuration["ConnectionStrings:BaseballConnection"]);
+    options.UseSqlite(builder.Configuration["ConnectionStrings:TaskConnection"]);
 });
 
-builder.Services.AddScoped<iTaskRepository, EFTaskRepository>(); //Give each request an instance of EFBaseballRepository. Each HTTP request will get its own. 
+builder.Services.AddScoped<ITaskRepository, EFTaskRepository>(); //Give each request an instance of EFBaseballRepository. Each HTTP request will get its own. 
 
 var app = builder.Build();
 

@@ -1,7 +1,7 @@
 ﻿
 namespace Mission08_3_12.Models
 {
-    public class EFTaskRepository : iTaskRepository
+    public class EFTaskRepository : ITaskRepository
     {
         private _413firstThingsContext _context;
 
@@ -9,10 +9,20 @@ namespace Mission08_3_12.Models
         {
             _context = temp;
         }
-        public List<Task> Tasks => _context.Tasks.ToList();
-        public void AddTask(Task task)
+        public IQueryable<TaskFix> Tasks => _context.Tasks;
+
+        public IQueryable<Category> Categories => _context.Categories;
+
+        public void AddSingleTask(TaskFix task)
         {
             _context.Tasks.Add(task);
+            _context.SaveChanges();
+
+
+        }
+        public void RemoveSingleTask(TaskFix task)
+        {
+            _context.Tasks.Remove(task);
             _context.SaveChanges();
         }
     }

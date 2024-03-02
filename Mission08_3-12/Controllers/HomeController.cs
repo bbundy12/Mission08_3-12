@@ -1,91 +1,62 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Mission08_3_12.Models;
 using System.Diagnostics;
+using System.Threading.Tasks;
+using SQLitePCL;
 
 namespace Mission08_3_12.Controllers
 {
     public class HomeController : Controller
     {
-        private iTaskRepository _repo;
-        public HomeController(iTaskRepository temp)
+        private ITaskRepository _repo;
+        public HomeController(ITaskRepository temp)
         {
             _repo = temp;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var movies = _repo.Tasks.Include("Category")
+                .OrderBy(x => x.Category.CategoryName).ToList();
+
+            return View(movies);
         }
 
-        public IActionResult AddTask()
+        [HttpGet]
+        public IActionResult AddTask(int id)
         {
-            return View();
+            var recordToEdit = _repo.Tasks
+                .Single(x => x.TaskId == id);
+
+            ViewBag.Categories = _repo.Categories.ToList();
+
+            return View("Contribute", recordToEdit);
         }
 
-        public IActionResult Delete()
+        [HttpPost]
+        public IActionResult AddTask(TaskFix app)
         {
-            return View();
+            _repo.AddSingleTask(app);
+
+            return RedirectToAction("Index");
         }
 
-        //public IActionResult MovieList()
-        //{
-        //    var movies = _context.Movies.ToList();
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var recordToDelete = _repo.Tasks
+                .Single(x => x.TaskId == id);
 
-        //    return View(movies);
-        //}
+            return View(recordToDelete);
+        }
 
-        //[HttpGet]
-        //public IActionResult Contribute()
-        //{
-        //    ViewBag.Categories = _context.Categories.ToList();
-        //    return View("Contribute");
-        //}
+        [HttpPost]
+        public IActionResult Delete(TaskFix app)
+        {
+            _repo.RemoveSingleTask(app);
 
-        //[HttpPost]
-        //public IActionResult Contribute(Movie response)
-        //{
-        //    _context.Movies.Add(response);
-        //    _context.SaveChanges();
-
-        //    return View("Success", response);
-        //}
-
-        //[HttpGet]
-        //public IActionResult Edit(int id)
-        //{
-        //    var recordToEdit = _context.Movies
-        //        .Single(x => x.MovieId == id);
-
-        //    ViewBag.Categories = _context.Categories.ToList();
-
-        //    return View("Contribute", recordToEdit);
-        //}
-
-        //[HttpPost]
-        //public IActionResult Edit(Movie app)
-        //{
-        //    _context.Update(app);
-        //    _context.SaveChanges();
-
-        //    return RedirectToAction("MovieList");
-        //}
-
-        //[HttpGet]
-        //public IActionResult Delete(int id)
-        //{
-        //    var recordToDelete = _context.Movies
-        //        .Single(x => x.MovieId == id);
-
-        //    return View(recordToDelete);
-        //}
-
-        //[HttpPost]
-        //public IActionResult Delete(Movie app)
-        //{
-        //    _context.Movies.Remove(app);
-        //    _context.SaveChanges();
-
-        //    return RedirectToAction("MovieList");
-        //}
+            return RedirectToAction("Index");
+        }
     }
 }

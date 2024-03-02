@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Mission08_3_12.Models;
 
-public partial class Task
+public partial class TaskFix
 {
+    [Key]
     public int TaskId { get; set; }
 
-    public string Task1 { get; set; } = null!;
+    public string TaskName { get; set; } = null!;
 
     public DateOnly? DueDate { get; set; }
 

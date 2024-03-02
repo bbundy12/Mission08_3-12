@@ -1,4 +1,4 @@
-﻿@model List<Task>
+﻿@model IQueryable<TaskFix>
 
 <div class="container">
     <div class="row">
@@ -20,8 +20,8 @@
                         if (!task.Completed && task.Quadrant == 1)
                         {
                             <tr>
-                                <td>@task.Task</td>
-                                <td>@task.DueDate.ToShortDateString()</td>
+                                <td>@task.TaskName</td>
+                                <td>@task.DueDate</td>
                                 <td>@task.Category.CategoryName</td>
                                 <td>
                                     <a class="btn btn-info btn-sm" asp-controller="Tasks" asp-action="Edit" asp-route-id="@task.TaskId">Edit</a>
@@ -52,8 +52,8 @@
                         if (!task.Completed && task.Quadrant == 2)
                         {
                             <tr>
-                                <td>@task.Task</td>
-                                <td>@task.DueDate.ToShortDateString()</td>
+                                <td>@task.TaskName</td>
+                                <td>@task.DueDate</td>
                                 <td>@task.Category.CategoryName</td>
                                 <td>
                                     <a class="btn btn-info btn-sm" asp-controller="Tasks" asp-action="Edit" asp-route-id="@task.TaskId">Edit</a>
@@ -86,8 +86,8 @@
                         if (!task.Completed && task.Quadrant == 3)
                         {
                             <tr>
-                                <td>@task.Task</td>
-                                <td>@task.DueDate.ToShortDateString()</td>
+                                <td>@task.TaskName</td>
+                                <td>@task.DueDate</td>
                                 <td>@task.Category.CategoryName</td>
                                 <td>
                                     <a class="btn btn-info btn-sm" asp-controller="Tasks" asp-action="Edit" asp-route-id="@task.TaskId">Edit</a>
@@ -118,8 +118,8 @@
                         if (!task.Completed && task.Quadrant == 4)
                         {
                             <tr>
-                                <td>@task.Task</td>
-                                <td>@task.DueDate.ToShortDateString()</td>
+                                <td>@task.TaskName</td>
+                                <td>@task.DueDate</td>
                                 <td>@task.Category.CategoryName</td>
                                 <td>
                                     <a class="btn btn-info btn-sm" asp-controller="Tasks" asp-action="Edit" asp-route-id="@task.TaskId">Edit</a>
